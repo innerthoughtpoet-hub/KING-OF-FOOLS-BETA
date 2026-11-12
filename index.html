@@ -487,6 +487,8 @@ footer {
 .front-phrase { position:absolute;bottom:38px;left:20px;right:20px;font: bold 10px Arial,sans-serif;letter-spacing:2px; }
 header { padding: 28px 15px 8px; }
 header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
+/* Hide only the central spade on A♠; retain corner ranks and all lettering. */
+.card-front.dragon-card .card-symbol { display: none !important; }
 /* A♠: dragon illustration with complete, legible card lettering. */
 .card-front.dragon-card .card-corner,
 .card-front.dragon-card .card-symbol,
