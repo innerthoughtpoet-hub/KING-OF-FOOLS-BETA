@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>King of Fools | Draw Your Next Vibe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Cinzel:wght@400;600;700;900&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Righteous&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <style>
 
 /* King of Fools: shuffle and reveal animations */
@@ -321,6 +324,39 @@ footer {
 .card-front.has-artwork .animal { margin: 5px 0; font-size: 12px; }
 .card-front.has-artwork .card-title { font-size: 19px; margin: 7px 0; }
 .card-front.has-artwork .card-meaning { font-size: 11px; }
+/* Each card has its own typographic character; suits are not locked to one font. */
+.card-front {
+  --title-font: Georgia, serif;
+  --title-spacing: .02em;
+  --title-weight: 700;
+  --title-style: normal;
+  --title-transform: none;
+}
+.card-front .card-title {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  font-style: var(--title-style);
+  letter-spacing: var(--title-spacing);
+  text-transform: var(--title-transform);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.card-front.has-artwork .card-title {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  font-style: var(--title-style);
+  letter-spacing: var(--title-spacing);
+  text-transform: var(--title-transform);
+  font-size: clamp(17px, 5.5vw, 24px);
+  line-height: 1.04;
+  bottom: 88px;
+}
+.card-front.has-artwork .animal,
+.card-front.has-artwork .card-meaning,
+.card-front.has-artwork .front-phrase {
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
 /* Full-bleed illustrated playing card: art fills the entire face. */
 .card-front.has-artwork {
   padding: 0;
@@ -620,6 +656,67 @@ const deck = cards.map(c => ({
 //  4♦: butterfly-centered concept (reference 4; requires adaptation)
 //  A♦: winter character concept (reference 5; replace with reindeer)
 //  additional butterfly/cat reference 6: style reference only
+// Individual card title typography (ordered A through K for each suit).
+// Each choice reflects the playlist's character, rather than applying one font per suit.
+// Format: [font family, letter spacing, font weight, font style, uppercase]
+const cardTypography = {
+  "A♠": ["Cinzel", ".045em", 900, "normal", true],
+  "2♠": ["Anton", ".01em", 400, "normal", true],
+  "3♠": ["Cinzel", ".13em", 600, "normal", true],
+  "4♠": ["Bebas Neue", ".09em", 400, "normal", true],
+  "5♠": ["Oswald", ".035em", 600, "normal", true],
+  "6♠": ["Anton", ".07em", 400, "normal", true],
+  "7♠": ["Bebas Neue", ".045em", 400, "normal", true],
+  "8♠": ["Orbitron", "-.035em", 700, "normal", true],
+  "9♠": ["Righteous", ".025em", 400, "normal", false],
+  "10♠": ["Cinzel", ".09em", 700, "normal", true],
+  "J♠": ["UnifrakturCook", ".025em", 700, "normal", false],
+  "Q♠": ["Cinzel", ".075em", 700, "normal", true],
+  "K♠": ["Cinzel", ".035em", 900, "normal", true],
+
+  "A♥": ["Great Vibes", ".005em", 400, "normal", false],
+  "2♥": ["Playfair Display", ".005em", 600, "italic", false],
+  "3♥": ["Josefin Sans", ".06em", 400, "normal", false],
+  "4♥": ["Playfair Display", ".015em", 600, "italic", false],
+  "5♥": ["Great Vibes", ".005em", 400, "normal", false],
+  "6♥": ["Abril Fatface", ".015em", 400, "normal", false],
+  "7♥": ["Special Elite", ".015em", 400, "normal", false],
+  "8♥": ["Josefin Sans", ".055em", 400, "normal", false],
+  "9♥": ["Playfair Display", ".035em", 700, "italic", false],
+  "10♥": ["Righteous", ".01em", 400, "normal", false],
+  "J♥": ["Bebas Neue", ".065em", 400, "normal", true],
+  "Q♥": ["Abril Fatface", ".035em", 400, "normal", false],
+  "K♥": ["Cinzel", ".07em", 600, "normal", true],
+
+  "A♣": ["Abril Fatface", ".02em", 400, "normal", false],
+  "2♣": ["Anton", ".025em", 400, "normal", true],
+  "3♣": ["Righteous", ".005em", 400, "normal", false],
+  "4♣": ["Righteous", ".035em", 400, "normal", false],
+  "5♣": ["Special Elite", ".02em", 400, "normal", false],
+  "6♣": ["Oswald", ".035em", 700, "normal", true],
+  "7♣": ["Orbitron", "-.015em", 700, "normal", true],
+  "8♣": ["Righteous", "-.015em", 400, "normal", false],
+  "9♣": ["Abril Fatface", ".015em", 400, "normal", false],
+  "10♣": ["Anton", ".02em", 400, "normal", true],
+  "J♣": ["Righteous", ".025em", 400, "normal", false],
+  "Q♣": ["Abril Fatface", ".025em", 400, "normal", false],
+  "K♣": ["Bebas Neue", ".085em", 400, "normal", true],
+
+  "A♦": ["Cinzel", ".065em", 600, "normal", true],
+  "2♦": ["Josefin Sans", ".075em", 600, "normal", false],
+  "3♦": ["Playfair Display", ".035em", 700, "italic", false],
+  "4♦": ["Great Vibes", ".01em", 400, "normal", false],
+  "5♦": ["Cinzel", ".075em", 600, "normal", true],
+  "6♦": ["Playfair Display", ".045em", 700, "italic", false],
+  "7♦": ["Righteous", ".025em", 400, "normal", false],
+  "8♦": ["Josefin Sans", ".055em", 400, "normal", false],
+  "9♦": ["UnifrakturCook", ".025em", 700, "normal", false],
+  "10♦": ["Orbitron", "-.015em", 500, "normal", true],
+  "J♦": ["Special Elite", ".02em", 400, "normal", false],
+  "Q♦": ["Playfair Display", ".055em", 700, "italic", false],
+  "K♦": ["Cinzel", ".065em", 700, "normal", true]
+};
+
 const artworkLinks = {
   "J♠": "j-spades-wild-prince.jpg",
   "4♥": "4-hearts-pillow-talk.jpg",
@@ -691,6 +788,18 @@ function displayCard(card) {
 
     document.getElementById("cardAnimal").textContent =
       card.animal;
+
+    const typography = cardTypography[card.rank + card.suit];
+    const cardTitle = document.getElementById("cardTitle");
+    if (typography) {
+      const [font, spacing, weight, style, uppercase] = typography;
+      const face = document.querySelector(".card-front");
+      face.style.setProperty("--title-font", "'" + font + "', Georgia, serif");
+      face.style.setProperty("--title-spacing", spacing);
+      face.style.setProperty("--title-weight", weight);
+      face.style.setProperty("--title-style", style);
+      face.style.setProperty("--title-transform", uppercase ? "uppercase" : "none");
+    }
 
     const artwork = document.getElementById("cardArtwork");
     const cardFace = document.querySelector(".card-front");
