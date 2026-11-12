@@ -27,10 +27,10 @@
 | ☑ | 9♠ | Midnight Mayhem | Tasmanian Devil | FINAL APPROVED: animated black-and-white Tasmanian devil spinning in a tornado under the moon, exaggerated cartoon expression, debris and cinematic textures. Preserve exact approved image for Spades ZIP. |
 | ☑ | 10♠ | The Royal Court | Lion | **FINAL APPROVED: Option 3** of crowned lion batch — crowned lion seated on ornate stone throne in ruined royal court, monochrome. Preserve exact image for `approved/`. Crowned lion options 1 (standing in palace ruins) and 2 (overlooking kingdom) are **REFERENCE ONLY** for `references/`. |
 | ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
-| ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
+| ☑ | Q♠ | Crown Me Dangerous | King Cobra | **FINAL APPROVED: Option 3** — crowned king cobra towering over ruined palace with hood spread. Preserve exact selected image for `approved/`. Options 1 and 2 from same batch are **REFERENCE ONLY** for `references/`. |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 10 / 13** (A♠ through 10♠ approved; 3 more individual approvals required).
+**Spades approval progress: 11 / 13** (A♠ through 10♠ plus Q♠ approved; J♠ and K♠ remain).
 
 ## Spades reference-only images (excluded from the 13 approved cards)
 
@@ -51,6 +51,9 @@
 
 - [ ] **10♠ crowned lion — option 1:** User explicitly requested the standing crowned lion in ruined palace courtyard as **REFERENCE ONLY** in final Spades ZIP `references/`.
 - [ ] **10♠ crowned lion — option 2:** User explicitly requested the crowned lion overlooking its kingdom from a balcony as **REFERENCE ONLY** in final Spades ZIP `references/`.
+
+- [ ] **Q♠ king cobra — option 1:** Serpent Queen on ornate throne. User selected as **REFERENCE ONLY** for final Spades ZIP `references/`.
+- [ ] **Q♠ king cobra — option 2:** Venomous Monarch rising above throne with jewelry. User selected as **REFERENCE ONLY** for final Spades ZIP `references/`.
 
 ## ♥ HEARTS — Love & Desire
 
