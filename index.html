@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>King of Fools | Draw Your Next Vibe</title>
+<style>
+
+/* King of Fools: shuffle and reveal animations */
+
+.playing-card.shuffling {
+  animation: deckShuffle 0.65s ease-in-out;
+}
+
+@keyframes deckShuffle {
+  0%   { transform: rotateY(0) translateX(0) rotate(0); }
+  20%  { transform: rotateY(0) translateX(-25px) rotate(-8deg); }
+  40%  { transform: rotateY(0) translateX(25px) rotate(8deg); }
+  60%  { transform: rotateY(0) translateX(-18px) rotate(-5deg); }
+  80%  { transform: rotateY(0) translateX(18px) rotate(5deg); }
+  100% { transform: rotateY(0) translateX(0) rotate(0); }
+}
+
+.playing-card.shuffling .card-front {
+  visibility: hidden;
+}
+
+.card-scene {
+  scroll-margin-top: 25px;
+}
+
+.card-back {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #151515 0px,
+      #151515 8px,
+      #292929 8px,
+      #292929 10px
+    );
+  border: 8px double #f5f5f2;
+}
+
+.card-back h2,
+.card-back p,
+.card-back .card-symbol {
+  background: #151515;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playing-card.shuffling {
+    animation: none;
+  }
+}
+
+
+:root {
+  --black: #101010;
+  --white: #f5f5f2;
+  --gray: #999;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+header {
+  padding: 38px 15px 20px;
+}
+
+header small {
+  letter-spacing: 3px;
+  color: #aaa;
+}
+
+h1 {
+  font-size: clamp(32px, 8vw, 58px);
+  margin: 12px 0 4px;
+  letter-spacing: 3px;
+}
+
+.tagline {
+  color: #bbb;
+  font-style: italic;
+}
+
+section {
+  padding: 24px 16px;
+  max-width: 850px;
+  margin: auto;
+}
+
+h2 { letter-spacing: 1px; }
+
+button, a.listen {
+  border: 1px solid #aaa;
+  background: #eee;
+  color: #111;
+  border-radius: 8px;
+  padding: 13px 19px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+button:hover, a.listen:hover {
+  background: #ccc;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.suit-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.suit-buttons button {
+  background: #222;
+  color: white;
+  min-width: 65px;
+  font-size: 22px;
+}
+
+.suit-buttons button.active {
+  background: white;
+  color: black;
+}
+
+.card-scene {
+  perspective: 1000px;
+  width: min(290px, 85vw);
+  height: 390px;
+  margin: 25px auto;
+}
+
+.playing-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .65s ease;
+}
+
+.playing-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 17px;
+  border: 6px double #222;
+  background: #f5f5f2;
+  color: #111;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-back {
+  background: #181818;
+  color: white;
+  border-color: #ddd;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+.card-corner {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-corner.bottom {
+  top: auto;
+  left: auto;
+  right: 14px;
+  bottom: 12px;
+  transform: rotate(180deg);
+}
+
+.animal {
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.card-symbol {
+  font-size: 75px;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 23px;
+  margin: 12px 0;
+}
+
+.card-meaning {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+#listenButton {
+  display: none;
+}
+
+.explorer {
+  border-top: 1px solid #444;
+  margin-top: 35px;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+  text-align: left;
+}
+
+.card-item {
+  background: #202020;
+  color: white;
+  border: 1px solid #444;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-weight: normal;
+}
+
+.card-item:hover,
+.card-item.selected {
+  background: #333;
+  border-color: white;
+}
+
+.card-item strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.card-item span {
+  display: block;
+  color: #bbb;
+  font-size: 13px;
+}
+
+.card-item .details {
+  display: none;
+  padding-top: 12px;
+  line-height: 1.6;
+}
+
+.card-item.selected .details {
+  display: block;
+}
+
+.card-item .details em {
+  display: block;
+  color: white;
+  margin-top: 8px;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding: 30px 15px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playing-card { transition: none; }
+}
+.front-phrase { position:absolute;bottom:38px;left:20px;right:20px;font: bold 10px Arial,sans-serif;letter-spacing:2px; }
+header { padding: 28px 15px 8px; }
+header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <small>INNERTHOUGHTPOET PRESENTS</small>
+  <h1>KING OF FOOLS</h1>
+  <p>THE DECK OF MIXES</p>
+  
+</header>
+
+<section>
+  
+
+  <div class="card-scene">
+    <div class="playing-card" id="playingCard">
+
+      <div class="card-face card-back">
+        <div class="card-symbol">♠ ♥ ♣ ♦</div>
+        <h2>KING OF FOOLS</h2>
+        <p>YOU PULL THE CARD.</p>
+      </div>
+
+      <div class="card-face card-front">
+        <div class="card-corner" id="topRank"></div>
+        <div class="card-symbol" id="cardSymbol"></div>
+        <div class="animal" id="cardAnimal"></div>
+        <h2 class="card-title" id="cardTitle"></h2>
+        <p class="card-meaning" id="cardMeaning"></p>
+        <div class="card-corner bottom" id="bottomRank"></div>
+        <div class="front-phrase">I SET THE NIGHT.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="drawRandom()">♠ Shuffle & Draw</button>
+    <button onclick="shareCard()">Share My Card</button>
+    <a class="listen" id="listenButton"
+       target="_blank" rel="noopener noreferrer">
+       ▶ Listen Now
+    </a>
+  </div>
+
+  <p id="drawStatus" aria-live="polite">
+    Press Shuffle & Draw to begin.
+  </p>
+</section>
+
+<section class="explorer">
+  <h2>Explore the Deck</h2>
+  <p>Choose a suit, then select any card.</p>
+
+  <div class="suit-buttons">
+    <button onclick="showSuit('♠')" id="suit-spades">♠</button>
+    <button onclick="showSuit('♥')" id="suit-hearts">♥</button>
+    <button onclick="showSuit('♣')" id="suit-clubs">♣</button>
+    <button onclick="showSuit('♦')" id="suit-diamonds">♦</button>
+  </div>
+
+  <h3 id="suitHeading"></h3>
+  <p id="suitDescription"></p>
+
+  <div class="card-list" id="cardList"></div>
+</section>
+
+<footer>
+  <p>© 2026 InnerThoughtPoet. All rights reserved.</p>
+  <p>King of Fools — The Deck of Mixes</p>
+  <p>You pull the card. I set the night.</p>
+</footer>
+
+<script>
+
+// ==========================================
+// OFFICIAL KING OF FOOLS CARD REGISTRY
+// ==========================================
+
+// Each card contains:
+// rank, suit, playlist title, animal, meaning,
+// and an optional Apple Music URL.
+
+const cards = [
+  // SPADES
+  ["A","♠","The Final Boss","Dragon",
+   "Mythic power and ultimate confrontation"],
+  ["2","♠","Pressure Makes Diamonds","Rhinoceros",
+   "Unstoppable force and endurance"],
+  ["3","♠","Villain Era","Black Panther",
+   "Silent confidence and dangerous elegance"],
+  ["4","♠","No Mercy","Honey Badger",
+   "Fearless aggression"],
+  ["5","♠","After Dark in LA","Coyote",
+   "Streetwise nocturnal survival"],
+  ["6","♠","War Paint","Wolverine",
+   "Fierce defiance"],
+  ["7","♠","The Underdog's Revenge","Mongoose",
+   "Small challenger, enormous courage"],
+  ["8","♠","Tunnel Vision","Peregrine Falcon",
+   "Precision and relentless focus"],
+  ["9","♠","Midnight Mayhem","Tasmanian Devil",
+   "Unpredictable ferocity"],
+  ["10","♠","The Royal Court","Lion",
+   "Dominance and authority"],
+  ["J","♠","The Wild Prince","Hyena",
+   "Rebellious, mischievous confidence"],
+  ["Q","♠","Crown Me Dangerous","King Cobra",
+   "Regal beauty and lethal presence"],
+  ["K","♠","There Can Only Be One","Silverback Gorilla",
+   "The undisputed ruler"],
+
+  // HEARTS
+  ["A","♥","Love at First Sound","Swan",
+   "First romance and graceful attraction"],
+  ["2","♥","Slow Burn","Red Fox",
+   "Playful pursuit and anticipation"],
+  ["3","♥","Almost Lovers","Hummingbird",
+   "Fleeting, delicate connection"],
+  ["4","♥","Pillow Talk","Snow Leopard",
+   "Private, soft, intimate elegance"],
+  ["5","♥","Love Language","Elephant",
+   "Empathy, memory, and affection"],
+  ["6","♥","Toxic But Tempting","Scorpion",
+   "Irresistible danger"],
+  ["7","♥","Heartbreak Hotel","Lone Wolf",
+   "Longing, isolation, and loss"],
+  ["8","♥","Morning After","Deer",
+   "Gentleness and vulnerability"],
+  ["9","♥","Body & Soul","Two Seahorses",
+   "Physical and emotional closeness"],
+  ["10","♥","Lovers & Friends","Lovebirds",
+   "Playful partnership"],
+  ["J","♥","His Freaky Playlist","Stallion",
+   "Bold, masculine seduction"],
+  ["Q","♥","Her Freaky Playlist","Black Widow Spider",
+   "Commanding, seductive mystery"],
+  ["K","♥","The Love Supreme","Emperor Penguin",
+   "Devotion and enduring partnership"],
+
+  // CLUBS
+  ["A","♣","Dance Floor Royalty","Peacock",
+   "Showmanship and spectacle"],
+  ["2","♣","Bass Face","Hippopotamus",
+   "Heavyweight bass and impact"],
+  ["3","♣","Throw It Back","Kangaroo",
+   "Bounce and explosive movement"],
+  ["4","♣","Worldwide Bounce","Macaw",
+   "Colorful global energy"],
+  ["5","♣","52 Pickup","Raccoon",
+   "Mischief and unexpected discoveries"],
+  ["6","♣","Boots & Bass","Bucking Bronco",
+   "Country grit and dance energy"],
+  ["7","♣","The Remix Roulette","Chameleon",
+   "Transformation and reinvention"],
+  ["8","♣","ADHD Everyday N LA","Squirrel",
+   "Restless curiosity and rapid switches"],
+  ["9","♣","Latin Heatwave","Flamingo",
+   "Expressive movement and tropical flair"],
+  ["10","♣","Party Anthems","Dolphin",
+   "Social, playful celebration"],
+  ["J","♣","Chaos Coordinator","Capuchin Monkey",
+   "Playful troublemaking"],
+  ["Q","♣","Main Character Energy","Bird-of-Paradise",
+   "Glamour and theatrical confidence"],
+  ["K","♣","The Floor Is Mine","Bull",
+   "Commanding, unstoppable dance energy"],
+
+  // DIAMONDS
+  ["A","♦","Christmas Mix","Reindeer",
+   "Festive magic and tradition"],
+  ["2","♦","Morning Mantras","Rooster",
+   "New beginnings and optimism"],
+  ["3","♦","The Muse's Vault","Octopus",
+   "Creativity and boundless imagination"],
+  ["4","♦","Golden Hour","Butterfly",
+   "Beauty and fleeting moments"],
+  ["5","♦","Sunday Best","Dove",
+   "Peace, faith, and gratitude"],
+  ["6","♦","Silk & Champagne","Persian Cat",
+   "Refined luxury and comfort"],
+  ["7","♦","Disco Never Died","Zebra",
+   "Retro patterns and unforgettable style"],
+  ["8","♦","Island Time","Sea Turtle",
+   "Carefree relaxation"],
+  ["9","♦","Halloween 2026","Raven",
+   "Mystery and gothic atmosphere"],
+  ["10","♦","Replay 2026","Orca",
+   "Memory, emotion, and personal connection"],
+  ["J","♦","Time Machine","Tortoise",
+   "Wisdom and journeys through time"],
+  ["Q","♦","Velvet & Gold","Arctic Fox",
+   "Sophistication and understated glamour"],
+  ["K","♦","A Night to Remember","White Peacock",
+   "Royal elegance, romance, and spectacular celebration"]
+];
+
+// Convert each card into an object.
+const deck = cards.map(c => ({
+  rank: c[0],
+  suit: c[1],
+  title: c[2],
+  animal: c[3],
+  meaning: c[4],
+  url: ""
+}));
+
+// ==========================================
+// ADD YOUR APPLE MUSIC LINKS HERE
+// ==========================================
+
+// Example:
+// playlistLinks["K♦"] = "https://music.apple.com/...";
+
+// Replace the empty strings with your real URLs.
+const playlistLinks = {
+  "K♦": "",
+  "10♣": "",
+  "A♠": ""
+};
+
+deck.forEach(card => {
+  const key = card.rank + card.suit;
+  card.url = playlistLinks[key] || "";
+});
+
+// ==========================================
+// DRAW AND REVEAL
+// ==========================================
+
+let currentCard = null;
+let currentIndex = -1;
+let activeSuit = "♦";
+let expandedIndex = -1;
+let flipTimer = null;
+
+function displayCard(card) {
+  currentCard = card;
+
+  const element = document.getElementById("playingCard");
+
+  // Return the card face down first.
+  element.classList.remove("flipped");
+
+  if (flipTimer) clearTimeout(flipTimer);
+
+  document.getElementById("listenButton").style.display = "none";
+
+  flipTimer = setTimeout(() => {
+    document.getElementById("topRank").textContent =
+      card.rank + card.suit;
+
+    document.getElementById("bottomRank").textContent =
+      card.rank + card.suit;
+
+    document.getElementById("cardSymbol").textContent =
+      card.suit;
+
+    document.getElementById("cardAnimal").textContent =
+      card.animal;
+
+    document.getElementById("cardTitle").textContent =
+      card.title;
+
+    document.getElementById("cardMeaning").textContent =
+      card.meaning;
+
+    document.getElementById("drawStatus").textContent =
+      "You drew " + card.rank + card.suit +
+      " — " + card.title;
+
+    const listen = document.getElementById("listenButton");
+
+    if (card.url) {
+      listen.href = card.url;
+      listen.style.display = "inline-block";
+    } else {
+      listen.removeAttribute("href");
+    }
+
+    element.classList.add("flipped");
+  }, 350);
+}
+
+function drawRandom() {
+  let nextIndex;
+
+  do {
+    nextIndex = Math.floor(Math.random() * deck.length);
+  } while (
+    nextIndex === currentIndex && deck.length > 1
+  );
+
+  currentIndex = nextIndex;
+  displayCard(deck[nextIndex]);
+}
+
+// ==========================================
+// EXPLORE SUITS
+// ==========================================
+
+const suitInfo = {
+  "♠": {
+    name: "Spades — Power & Conflict",
+    description: "Power, conflict, survival and ambition."
+  },
+  "♥": {
+    name: "Hearts — Love & Desire",
+    description: "Love, seduction, vulnerability and heartbreak."
+  },
+  "♣": {
+    name: "Clubs — Dance & Chaos",
+    description: "Dance, rhythm, movement and unpredictability."
+  },
+  "♦": {
+    name: "Diamonds — Celebration & Lifestyle",
+    description: "Luxury, lifestyle, nostalgia and special occasions."
+  }
+};
+
+function showSuit(suit) {
+  activeSuit = suit;
+  expandedIndex = -1;
+
+  document.getElementById("suitHeading").textContent =
+    suit + " " + suitInfo[suit].name;
+
+  document.getElementById("suitDescription").textContent =
+    suitInfo[suit].description;
+
+  const buttonIds = {
+    "♠": "suit-spades",
+    "♥": "suit-hearts",
+    "♣": "suit-clubs",
+    "♦": "suit-diamonds"
+  };
+
+  Object.values(buttonIds).forEach(id => {
+    document.getElementById(id).classList.remove("active");
+  });
+
+  document.getElementById(buttonIds[suit])
+    .classList.add("active");
+
+  renderExplorer();
+}
+
+function renderExplorer() {
+  const list = document.getElementById("cardList");
+  list.innerHTML = "";
+
+  deck.forEach((card, index) => {
+    if (card.suit !== activeSuit) return;
+
+    const item = document.createElement("button");
+    item.className = "card-item";
+
+    if (expandedIndex === index) {
+      item.classList.add("selected");
+    }
+
+    const heading = document.createElement("strong");
+    heading.textContent =
+      card.rank + card.suit + " — " + card.title;
+
+    const animal = document.createElement("span");
+    animal.textContent = "Animal: " + card.animal;
+
+    const details = document.createElement("div");
+    details.className = "details";
+
+    const meaning = document.createElement("span");
+    meaning.textContent = card.meaning;
+
+    const action = document.createElement("em");
+    action.textContent = "Tap again to close";
+
+    details.appendChild(meaning);
+    details.appendChild(action);
+
+    item.appendChild(heading);
+    item.appendChild(animal);
+    item.appendChild(details);
+
+    item.onclick = () => {
+      if (expandedIndex === index) {
+        expandedIndex = -1;
+        renderExplorer();
+        return;
+      }
+
+      expandedIndex = index;
+      renderExplorer();
+
+      // Reveal this selected card above.
+      currentIndex = index;
+      displayCard(card);
+      document.querySelector('.card-scene').scrollIntoView({behavior:'smooth',block:'center'});
+    };
+
+    list.appendChild(item);
+  });
+}
+
+// ==========================================
+// SHARE CARD
+// ==========================================
+
+async function shareCard() {
+  if (!currentCard) {
+    alert("Draw a card first!");
+    return;
+  }
+
+  const message =
+    "I drew " +
+    currentCard.rank + currentCard.suit +
+    " — " + currentCard.title +
+    " (" + currentCard.animal + ") " +
+    "from King of Fools: Draw Your Next Vibe!";
+
+  const shareData = {
+    title: "King of Fools",
+    text: message,
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+
+  try {
+    await navigator.clipboard.writeText(
+      message + " " + window.location.href
+    );
+    alert("Your card result was copied!");
+  } catch (error) {
+    window.prompt(
+      "Copy your card result:",
+      message + " " + window.location.href
+    );
+  }
+}
+
+// ==========================================
+// INITIALIZE WEBSITE
+// ==========================================
+
+showSuit("♦");
+
+</script>
+</body>
+</html>
