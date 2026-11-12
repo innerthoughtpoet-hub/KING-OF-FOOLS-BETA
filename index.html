@@ -351,7 +351,7 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
       <div class="card-face card-front">
         <div class="card-corner" id="topRank"></div>
         <div class="card-symbol" id="cardSymbol"></div>
-        <img class="card-artwork" id="cardArtwork" alt="" loading="lazy">
+        <img class="card-artwork" id="cardArtwork" alt="" loading="eager">
         <div class="animal" id="cardAnimal"></div>
         <h2 class="card-title" id="cardTitle"></h2>
         <p class="card-meaning" id="cardMeaning"></p>
@@ -620,7 +620,9 @@ function displayCard(card) {
     artwork.removeAttribute("src");
     cardFace.classList.remove("has-artwork");
     if (artworkPath) {
-      artwork.onload = () => cardFace.classList.add("has-artwork");
+      // Display immediately so the browser requests the image even when the card is flipped.
+      // The previous display:none + loading=lazy combination could prevent loading.
+      cardFace.classList.add("has-artwork");
       artwork.onerror = () => cardFace.classList.remove("has-artwork");
       artwork.alt = card.title + " — " + card.animal + " illustration";
       artwork.src = artworkPath;
