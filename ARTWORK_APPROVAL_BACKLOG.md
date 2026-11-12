@@ -26,11 +26,11 @@
 | ☑ | 8♠ | Tunnel Vision | Peregrine Falcon | **FINAL APPROVED: Option 1** of the three tunnel-car falcon images (falcon banking above car in rain-slick tunnel). Keep exact option 1 in `approved/`. Original mountain diving falcon and tunnel-car option 3 are **REFERENCE ONLY**, for `references/`. |
 | ☑ | 9♠ | Midnight Mayhem | Tasmanian Devil | FINAL APPROVED: animated black-and-white Tasmanian devil spinning in a tornado under the moon, exaggerated cartoon expression, debris and cinematic textures. Preserve exact approved image for Spades ZIP. |
 | ☑ | 10♠ | The Royal Court | Lion | **FINAL APPROVED: Option 3** of crowned lion batch — crowned lion seated on ornate stone throne in ruined royal court, monochrome. Preserve exact image for `approved/`. Crowned lion options 1 (standing in palace ruins) and 2 (overlooking kingdom) are **REFERENCE ONLY** for `references/`. |
-| ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
+| ☑ | J♠ | The Wild Prince | Hyena | **FINAL APPROVED by user automatically:** existing crowned, laughing hyena in jester collar on throne with floating playing cards. Preserve that existing artwork, not a regenerated substitute, for final Spades ZIP. |
 | ☑ | Q♠ | Crown Me Dangerous | King Cobra | **FINAL APPROVED: Option 3** — crowned king cobra towering over ruined palace with hood spread. Preserve exact selected image for `approved/`. Options 1 and 2 from same batch are **REFERENCE ONLY** for `references/`. |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 11 / 13** (A♠ through 10♠ plus Q♠ approved; J♠ and K♠ remain).
+**Spades approval progress: 12 / 13** (A♠ through Q♠ approved; only K♠ silverback gorilla remains).
 
 ## Spades reference-only images (excluded from the 13 approved cards)
 
