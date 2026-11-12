@@ -24,13 +24,13 @@
 | ☑ | 6♠ | War Paint | Wolverine | User explicitly approved **option 3**, upright on hind legs on alpine rocks, with long bushy tail and visible claws. Preserve this specific generated version for the final ZIP; earlier versions rejected. |
 | ☑ | 7♠ | The Underdog's Revenge | Mongoose | User explicitly approved **Option 1** from mongoose-versus-king-cobra confrontation batch: lunging mongoose facing towering cobra. Preserve exact chosen image for Spades ZIP; earlier mongoose portrait option 2 is reference-only. |
 | ☑ | 8♠ | Tunnel Vision | Peregrine Falcon | **FINAL APPROVED: Option 1** of the three tunnel-car falcon images (falcon banking above car in rain-slick tunnel). Keep exact option 1 in `approved/`. Original mountain diving falcon and tunnel-car option 3 are **REFERENCE ONLY**, for `references/`. |
-| ☐ | 9♠ | Midnight Mayhem | Tasmanian Devil | Animal/environment only |
+| ☑ | 9♠ | Midnight Mayhem | Tasmanian Devil | FINAL APPROVED: animated black-and-white Tasmanian devil spinning in a tornado under the moon, exaggerated cartoon expression, debris and cinematic textures. Preserve exact approved image for Spades ZIP. |
 | ☐ | 10♠ | The Royal Court | Lion | Animal/environment only |
 | ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
 | ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 8 / 13** (A♠ through 8♠ approved; 5 more individual approvals required).
+**Spades approval progress: 9 / 13** (A♠ through 9♠ approved; 4 more individual approvals required).
 
 ## Spades reference-only images (excluded from the 13 approved cards)
 
