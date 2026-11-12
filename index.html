@@ -875,9 +875,23 @@ function displayCard(card) {
       // The previous display:none + loading=lazy combination could prevent loading.
       cardFace.classList.add("has-artwork");
       if (finishedArtworkCards.has(card.rank + card.suit)) cardFace.classList.add("finished-artwork");
-      artwork.onerror = () => cardFace.classList.remove("has-artwork", "finished-artwork");
+      // Use a fully qualified URL so nested GitHub Pages paths resolve reliably.
+      // If Pages has not published the image yet, fall back to GitHub's raw file host.
+      const encodedPath = artworkPath.split("/").map(encodeURIComponent).join("/");
+      const pagesUrl = "https://innerthoughtpoet-hub.github.io/KING-OF-FOOLS-BETA/" + encodedPath;
+      const rawUrl = "https://raw.githubusercontent.com/innerthoughtpoet-hub/KING-OF-FOOLS-BETA/main/" + encodedPath;
+      artwork.dataset.fallbackUsed = "false";
+      artwork.onerror = () => {
+        if (artwork.dataset.fallbackUsed === "false") {
+          artwork.dataset.fallbackUsed = "true";
+          artwork.src = rawUrl;
+        } else {
+          cardFace.classList.remove("has-artwork", "finished-artwork");
+          document.getElementById("drawStatus").textContent += " — Artwork could not load.";
+        }
+      };
       artwork.alt = card.title + " — " + card.animal + " illustration";
-      artwork.src = artworkPath;
+      artwork.src = pagesUrl;
     }
 
     document.getElementById("cardTitle").textContent =
