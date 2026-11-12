@@ -487,6 +487,28 @@ footer {
 .front-phrase { position:absolute;bottom:38px;left:20px;right:20px;font: bold 10px Arial,sans-serif;letter-spacing:2px; }
 header { padding: 28px 15px 8px; }
 header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
+/* A♠: dragon illustration with complete, legible card lettering. */
+.card-front.dragon-card .card-corner,
+.card-front.dragon-card .card-symbol,
+.card-front.dragon-card .animal,
+.card-front.dragon-card .card-title,
+.card-front.dragon-card .card-meaning,
+.card-front.dragon-card .front-phrase {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 5 !important;
+  color: #fff !important;
+  text-shadow: 0 2px 5px #000, 0 0 12px #000 !important;
+}
+.card-front.dragon-card::after {
+  display: block !important;
+  background: linear-gradient(to bottom, rgba(0,0,0,.65), transparent 33%, rgba(0,0,0,.3) 52%, rgba(0,0,0,.94) 100%) !important;
+}
+.card-front.dragon-card .animal { bottom: 132px; }
+.card-front.dragon-card .card-title { bottom: 93px; }
+.card-front.dragon-card .card-meaning { bottom: 49px; }
+.card-front.dragon-card .front-phrase { bottom: 19px; }
 </style>
 </head>
 
@@ -875,6 +897,7 @@ function displayCard(card) {
     const artworkPath = artworkLinks[card.rank + card.suit];
     artwork.removeAttribute("src");
     cardFace.classList.remove("has-artwork", "finished-artwork");
+    cardFace.classList.toggle("dragon-card", card.rank === "A" && card.suit === "♠");
     if (artworkPath) {
       // Display immediately so the browser requests the image even when the card is flipped.
       // The previous display:none + loading=lazy combination could prevent loading.
