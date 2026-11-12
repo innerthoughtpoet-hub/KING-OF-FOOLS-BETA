@@ -22,7 +22,7 @@
 | ☑ | 4♠ | No Mercy | Honey Badger | User explicitly approved charging snarling honey badger on jagged wet rocks under full moon; retain generated original for suit ZIP. |
 | ☑ | 5♠ | After Dark in LA | Coyote | User approved monochrome coyote overlooking Los Angeles skyline and palms beneath a full moon; retain original for suit ZIP. |
 | ☑ | 6♠ | War Paint | Wolverine | User explicitly approved **option 3**, upright on hind legs on alpine rocks, with long bushy tail and visible claws. Preserve this specific generated version for the final ZIP; earlier versions rejected. |
-| ☐ | 7♠ | The Underdog's Revenge | Mongoose | Animal/environment only |
+| ◐ | 7♠ | The Underdog's Revenge | Mongoose | Option 2 mongoose portrait retained as reference only; developing a mongoose-versus-king-cobra confrontation. Not approved yet. |
 | ☐ | 8♠ | Tunnel Vision | Peregrine Falcon | Animal/environment only |
 | ☐ | 9♠ | Midnight Mayhem | Tasmanian Devil | Animal/environment only |
 | ☐ | 10♠ | The Royal Court | Lion | Animal/environment only |
@@ -40,6 +40,8 @@
 - These reference images **do not count** toward the 13 required final-approved Spades card artworks. Preserve the original image files if available for packaging.
 
 **New review rule:** Present **three distinct visual options per card**, and only mark the chosen image approved after explicit user confirmation.
+
+- [ ] **7♠ mongoose portrait — option 2 from the three-image mongoose batch:** User explicitly requested to retain as **REFERENCE ONLY**, not approved card artwork. Keep in the final Spades ZIP `references/` folder if the original file is available. The approved 7♠ card still needs a mongoose-versus-cobra confrontation.
 
 ## ♥ HEARTS — Love & Desire
 
