@@ -386,6 +386,26 @@ footer {
   font-size: 9px;
   line-height: 1.2;
 }
+/* Finished, pre-lettered artwork: display the image as the complete card face.
+   Future animal-only illustrations retain the HTML title, animal and tagline. */
+.card-front.has-artwork.finished-artwork .card-symbol,
+.card-front.has-artwork.finished-artwork .animal,
+.card-front.has-artwork.finished-artwork .card-title,
+.card-front.has-artwork.finished-artwork .card-meaning,
+.card-front.has-artwork.finished-artwork .card-corner,
+.card-front.has-artwork.finished-artwork .front-phrase {
+  display: none;
+}
+.card-front.has-artwork.finished-artwork::after {
+  display: none;
+}
+.card-front.has-artwork.finished-artwork {
+  border: 0;
+}
+.card-front.has-artwork.finished-artwork .card-artwork {
+  border-radius: 17px;
+  object-fit: fill;
+}
 /* Full-bleed illustrated playing card: art fills the entire face. */
 .card-front.has-artwork {
   padding: 0;
@@ -746,7 +766,10 @@ const cardTypography = {
   "K♦": ["Cinzel", ".065em", 700, "normal", true]
 };
 
+// The Final Boss is a complete, pre-lettered card image. Other artworks are animal-only.
+const finishedArtworkCards = new Set(["A♠"]);
 const artworkLinks = {
+  "A♠": "a-spades-final-boss.png",
   "J♠": "j-spades-wild-prince.jpg",
   "4♥": "4-hearts-pillow-talk.jpg",
   "3♠": "3-spades-villain-era.jpg"
@@ -842,12 +865,13 @@ function displayCard(card) {
     const cardFace = document.querySelector(".card-front");
     const artworkPath = artworkLinks[card.rank + card.suit];
     artwork.removeAttribute("src");
-    cardFace.classList.remove("has-artwork");
+    cardFace.classList.remove("has-artwork", "finished-artwork");
     if (artworkPath) {
       // Display immediately so the browser requests the image even when the card is flipped.
       // The previous display:none + loading=lazy combination could prevent loading.
       cardFace.classList.add("has-artwork");
-      artwork.onerror = () => cardFace.classList.remove("has-artwork");
+      if (finishedArtworkCards.has(card.rank + card.suit)) cardFace.classList.add("finished-artwork");
+      artwork.onerror = () => cardFace.classList.remove("has-artwork", "finished-artwork");
       artwork.alt = card.title + " — " + card.animal + " illustration";
       artwork.src = artworkPath;
     }
