@@ -351,12 +351,41 @@ footer {
   line-height: 1.04;
   bottom: 88px;
 }
-.card-front.has-artwork .animal,
-.card-front.has-artwork .card-meaning,
-.card-front.has-artwork .front-phrase {
+.card-front.has-artwork .card-meaning {
   font-family: 'DM Sans', Arial, sans-serif;
 }
 
+/* Coordinated typography for animal names and the deck signature.
+   Long/script display fonts stay legible by using restrained sizes. */
+.card-front {
+  --detail-font: Georgia, serif;
+  --detail-spacing: .12em;
+  --signature-font: Georgia, serif;
+  --signature-spacing: .13em;
+}
+.card-front .animal {
+  font-family: var(--detail-font);
+  letter-spacing: var(--detail-spacing);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.card-front .front-phrase {
+  font-family: var(--signature-font);
+  letter-spacing: var(--signature-spacing);
+  font-weight: 700;
+}
+.card-front.has-artwork .animal {
+  font-family: var(--detail-font);
+  letter-spacing: var(--detail-spacing);
+  font-size: 10px;
+  line-height: 1.15;
+}
+.card-front.has-artwork .front-phrase {
+  font-family: var(--signature-font);
+  letter-spacing: var(--signature-spacing);
+  font-size: 9px;
+  line-height: 1.2;
+}
 /* Full-bleed illustrated playing card: art fills the entire face. */
 .card-front.has-artwork {
   padding: 0;
@@ -799,6 +828,14 @@ function displayCard(card) {
       face.style.setProperty("--title-weight", weight);
       face.style.setProperty("--title-style", style);
       face.style.setProperty("--title-transform", uppercase ? "uppercase" : "none");
+      // Give the animal and tagline a coordinated but readable version of the title style.
+      const decorative = ["Great Vibes", "UnifrakturCook", "Special Elite"];
+      const detailFont = decorative.includes(font) ? "Josefin Sans" : font;
+      const signatureFont = font === "Great Vibes" ? "Playfair Display" : font;
+      face.style.setProperty("--detail-font", "'" + detailFont + "', Georgia, serif");
+      face.style.setProperty("--detail-spacing", decorative.includes(font) ? ".09em" : ".11em");
+      face.style.setProperty("--signature-font", "'" + signatureFont + "', Georgia, serif");
+      face.style.setProperty("--signature-spacing", decorative.includes(font) ? ".075em" : ".12em");
     }
 
     const artwork = document.getElementById("cardArtwork");
