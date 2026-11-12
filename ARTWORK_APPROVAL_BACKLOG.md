@@ -28,9 +28,9 @@
 | ☑ | 10♠ | The Royal Court | Lion | **FINAL APPROVED: Option 3** of crowned lion batch — crowned lion seated on ornate stone throne in ruined royal court, monochrome. Preserve exact image for `approved/`. Crowned lion options 1 (standing in palace ruins) and 2 (overlooking kingdom) are **REFERENCE ONLY** for `references/`. |
 | ☑ | J♠ | The Wild Prince | Hyena | **FINAL APPROVED by user automatically:** existing crowned, laughing hyena in jester collar on throne with floating playing cards. Preserve that existing artwork, not a regenerated substitute, for final Spades ZIP. |
 | ☑ | Q♠ | Crown Me Dangerous | King Cobra | **FINAL APPROVED: Option 3** — crowned king cobra towering over ruined palace with hood spread. Preserve exact selected image for `approved/`. Options 1 and 2 from same batch are **REFERENCE ONLY** for `references/`. |
-| ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
+| ☑ | K♠ | There Can Only Be One | Silverback Gorilla | **FINAL APPROVED: Option 1** of three crowned silverback gorilla throne images — crowned gorilla on ornate throne, scepter, moonlit ruins. Preserve exact image for `approved/`. **Option 2** of same batch retained **REFERENCE ONLY** for `references/`. |
 
-**Spades approval progress: 12 / 13** (A♠ through Q♠ approved; only K♠ silverback gorilla remains).
+**Spades approval progress: 13 / 13 — ALL ARTWORKS APPROVED.** ZIP packaging is pending verification/collection of the exact approved original image files; approval checklist is not itself an image archive.
 
 ## Spades reference-only images (excluded from the 13 approved cards)
 
@@ -54,6 +54,8 @@
 
 - [ ] **Q♠ king cobra — option 1:** Serpent Queen on ornate throne. User selected as **REFERENCE ONLY** for final Spades ZIP `references/`.
 - [ ] **Q♠ king cobra — option 2:** Venomous Monarch rising above throne with jewelry. User selected as **REFERENCE ONLY** for final Spades ZIP `references/`.
+
+- [ ] **K♠ silverback gorilla — option 2:** Second crowned silverback throne illustration from the three-option batch. User explicitly selected as **REFERENCE ONLY** for final Spades ZIP `references/`. Preserve exact original if available.
 
 ## ♥ HEARTS — Love & Desire
 
