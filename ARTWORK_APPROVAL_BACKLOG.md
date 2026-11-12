@@ -25,12 +25,12 @@
 | ☑ | 7♠ | The Underdog's Revenge | Mongoose | User explicitly approved **Option 1** from mongoose-versus-king-cobra confrontation batch: lunging mongoose facing towering cobra. Preserve exact chosen image for Spades ZIP; earlier mongoose portrait option 2 is reference-only. |
 | ☑ | 8♠ | Tunnel Vision | Peregrine Falcon | **FINAL APPROVED: Option 1** of the three tunnel-car falcon images (falcon banking above car in rain-slick tunnel). Keep exact option 1 in `approved/`. Original mountain diving falcon and tunnel-car option 3 are **REFERENCE ONLY**, for `references/`. |
 | ☑ | 9♠ | Midnight Mayhem | Tasmanian Devil | FINAL APPROVED: animated black-and-white Tasmanian devil spinning in a tornado under the moon, exaggerated cartoon expression, debris and cinematic textures. Preserve exact approved image for Spades ZIP. |
-| ↺ | 10♠ | The Royal Court | Lion | Two uncrowned lion drafts rejected but retained as reference-only. Final design MUST feature a lion visibly wearing a crown, with regal royal-court setting; awaiting approval. |
+| ☑ | 10♠ | The Royal Court | Lion | **FINAL APPROVED: Option 3** of crowned lion batch — crowned lion seated on ornate stone throne in ruined royal court, monochrome. Preserve exact image for `approved/`. Crowned lion options 1 (standing in palace ruins) and 2 (overlooking kingdom) are **REFERENCE ONLY** for `references/`. |
 | ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
 | ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 9 / 13** (A♠ through 9♠ approved; 4 more individual approvals required).
+**Spades approval progress: 10 / 13** (A♠ through 10♠ approved; 3 more individual approvals required).
 
 ## Spades reference-only images (excluded from the 13 approved cards)
 
@@ -48,6 +48,9 @@
 - [ ] **8♠ tunnel-car peregrine falcon — option 3:** User explicitly selected this image for the final ZIP `references/` folder, **REFERENCE ONLY**, not approved card art. Preserve exact original if available.
 
 - [ ] **10♠ lion drafts — two uncrowned lion images:** User rejected both for final 10♠ because the lion needs a visible crown. User explicitly requested BOTH be retained in final Spades ZIP `references/`, marked **REFERENCE ONLY**. Preserve originals if available.
+
+- [ ] **10♠ crowned lion — option 1:** User explicitly requested the standing crowned lion in ruined palace courtyard as **REFERENCE ONLY** in final Spades ZIP `references/`.
+- [ ] **10♠ crowned lion — option 2:** User explicitly requested the crowned lion overlooking its kingdom from a balcony as **REFERENCE ONLY** in final Spades ZIP `references/`.
 
 ## ♥ HEARTS — Love & Desire
 
