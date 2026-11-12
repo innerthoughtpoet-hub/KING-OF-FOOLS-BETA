@@ -21,7 +21,7 @@
 | ☑ | 3♠ | Villain Era | Black Panther | User selected the newly generated crowned black panther in moonlit ruins for the final Spades ZIP, despite an existing beta image. Preserve this specific generated version; do not substitute the earlier beta reference. |
 | ☑ | 4♠ | No Mercy | Honey Badger | User explicitly approved charging snarling honey badger on jagged wet rocks under full moon; retain generated original for suit ZIP. |
 | ☑ | 5♠ | After Dark in LA | Coyote | User approved monochrome coyote overlooking Los Angeles skyline and palms beneath a full moon; retain original for suit ZIP. |
-| ↺ | 6♠ | War Paint | Wolverine | Two generated drafts rejected: both depict coyotes, not wolverines. Must regenerate with unmistakable wolverine anatomy. Rejected images are reference-only, not approved card art. |
+| ↺ | 6♠ | War Paint | Wolverine | Three generated drafts rejected: first two depict coyotes, and third resembles the approved honey badger too closely. Future reviews present three distinct options at once. Rejected images are reference-only, not approved card art. |
 | ☐ | 7♠ | The Underdog's Revenge | Mongoose | Animal/environment only |
 | ☐ | 8♠ | Tunnel Vision | Peregrine Falcon | Animal/environment only |
 | ☐ | 9♠ | Midnight Mayhem | Tasmanian Devil | Animal/environment only |
@@ -36,7 +36,10 @@
 
 - [ ] **6♠ attempt 1 — coyote / LA night skyline:** Rejected as 6♠ artwork because it depicts a coyote instead of a wolverine. Include in a separate `references/` folder in the final Spades ZIP, clearly labeled **NOT APPROVED — REFERENCE ONLY**.
 - [ ] **6♠ attempt 2 — scarred coyote / Hollywood skyline:** Rejected as 6♠ artwork for the same reason. Include in `references/`, clearly labeled **NOT APPROVED — REFERENCE ONLY**.
+- [ ] **6♠ attempt 3 — alpine wolverine on wet rocks:** Rejected because it looks too similar to 4♠ honey badger. Retain as reference only if original file is available.
 - These reference images **do not count** toward the 13 required final-approved Spades card artworks. Preserve the original image files if available for packaging.
+
+**New review rule:** Present **three distinct visual options per card**, and only mark the chosen image approved after explicit user confirmation.
 
 ## ♥ HEARTS — Love & Desire
 
