@@ -17,7 +17,7 @@
 | Approval | Card | Playlist | Animal | Artwork notes / file |
 |---|---|---|---|---|
 | ☑ | A♠ | The Final Boss | Dragon | User explicitly approved the **complete, pre-lettered dragon card** design ("exactly how I want it to look"). **Legacy exception** to animal-only standard. Generated image needs archival/upload to deliverable set; not yet on beta site. |
-| ☐ | 2♠ | Pressure Makes Diamonds | Rhinoceros | Animal/environment only |
+| ☑ | 2♠ | Pressure Makes Diamonds | Rhinoceros | User explicitly approved monochrome charging rhinoceros with crystals, lightning, mountains, and full moon. Approved original must be retained for suit ZIP. |
 | ☐ | 3♠ | Villain Era | Black Panther | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
 | ☐ | 4♠ | No Mercy | Honey Badger | Animal/environment only |
 | ☐ | 5♠ | After Dark in LA | Coyote | Animal/environment only |
@@ -30,7 +30,7 @@
 | ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 1 / 13** (one complete-card exception; 12 more individual approvals required).
+**Spades approval progress: 2 / 13** (dragon and rhinoceros approved; 11 more individual approvals required).
 
 ## ♥ HEARTS — Love & Desire
 
