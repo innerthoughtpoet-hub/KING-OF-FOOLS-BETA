@@ -20,7 +20,7 @@
 | ☑ | 2♠ | Pressure Makes Diamonds | Rhinoceros | User explicitly approved monochrome charging rhinoceros with crystals, lightning, mountains, and full moon. Approved original must be retained for suit ZIP. |
 | ☑ | 3♠ | Villain Era | Black Panther | User selected the newly generated crowned black panther in moonlit ruins for the final Spades ZIP, despite an existing beta image. Preserve this specific generated version; do not substitute the earlier beta reference. |
 | ☑ | 4♠ | No Mercy | Honey Badger | User explicitly approved charging snarling honey badger on jagged wet rocks under full moon; retain generated original for suit ZIP. |
-| ☐ | 5♠ | After Dark in LA | Coyote | Animal/environment only |
+| ☑ | 5♠ | After Dark in LA | Coyote | User approved monochrome coyote overlooking Los Angeles skyline and palms beneath a full moon; retain original for suit ZIP. |
 | ☐ | 6♠ | War Paint | Wolverine | Animal/environment only |
 | ☐ | 7♠ | The Underdog's Revenge | Mongoose | Animal/environment only |
 | ☐ | 8♠ | Tunnel Vision | Peregrine Falcon | Animal/environment only |
@@ -30,7 +30,7 @@
 | ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
 
-**Spades approval progress: 4 / 13** (dragon, rhinoceros, selected new black panther, and honey badger approved; 9 more individual approvals required).
+**Spades approval progress: 5 / 13** (A♠ through 5♠ approved; 8 more individual approvals required).
 
 ## ♥ HEARTS — Love & Desire
 
