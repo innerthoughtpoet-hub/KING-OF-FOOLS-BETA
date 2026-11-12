@@ -358,6 +358,7 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
   <div class="controls">
     <button onclick="drawRandom()">♠ Shuffle & Draw</button>
     <button onclick="shareCard()">Share My Card</button>
+    <button id="flipCardButton" onclick="toggleCardFlip()" disabled aria-label="Flip card back over">↶ Flip Card Over</button>
     <a class="listen" id="listenButton"
        target="_blank" rel="noopener noreferrer">
        ▶ Listen Now
@@ -555,8 +556,20 @@ let activeSuit = "♦";
 let expandedIndex = -1;
 let flipTimer = null;
 
+function toggleCardFlip() {
+  if (!currentCard) return;
+  const cardElement = document.getElementById("playingCard");
+  const button = document.getElementById("flipCardButton");
+  const faceUp = cardElement.classList.toggle("flipped");
+  button.textContent = faceUp ? "↶ Flip Card Over" : "↷ Reveal Card Again";
+  button.setAttribute("aria-label", faceUp ? "Flip card back over" : "Reveal card again");
+}
+
 function displayCard(card) {
   currentCard = card;
+  const flipButton = document.getElementById("flipCardButton");
+  flipButton.disabled = true;
+  flipButton.textContent = "↶ Flip Card Over";
 
   const element = document.getElementById("playingCard");
 
@@ -600,6 +613,7 @@ function displayCard(card) {
     }
 
     element.classList.add("flipped");
+    flipButton.disabled = false;
   }, 350);
 }
 
