@@ -25,7 +25,7 @@
 | ☑ | 7♠ | The Underdog's Revenge | Mongoose | User explicitly approved **Option 1** from mongoose-versus-king-cobra confrontation batch: lunging mongoose facing towering cobra. Preserve exact chosen image for Spades ZIP; earlier mongoose portrait option 2 is reference-only. |
 | ☑ | 8♠ | Tunnel Vision | Peregrine Falcon | **FINAL APPROVED: Option 1** of the three tunnel-car falcon images (falcon banking above car in rain-slick tunnel). Keep exact option 1 in `approved/`. Original mountain diving falcon and tunnel-car option 3 are **REFERENCE ONLY**, for `references/`. |
 | ☑ | 9♠ | Midnight Mayhem | Tasmanian Devil | FINAL APPROVED: animated black-and-white Tasmanian devil spinning in a tornado under the moon, exaggerated cartoon expression, debris and cinematic textures. Preserve exact approved image for Spades ZIP. |
-| ☐ | 10♠ | The Royal Court | Lion | Animal/environment only |
+| ↺ | 10♠ | The Royal Court | Lion | Two uncrowned lion drafts rejected but retained as reference-only. Final design MUST feature a lion visibly wearing a crown, with regal royal-court setting; awaiting approval. |
 | ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
 | ☐ | Q♠ | Crown Me Dangerous | King Cobra | Animal/environment only |
 | ☐ | K♠ | There Can Only Be One | Silverback Gorilla | Animal/environment only |
@@ -46,6 +46,8 @@
 - [ ] **8♠ original diving peregrine falcon — image 1:** User requested inclusion in final Spades ZIP as **REFERENCE ONLY**. Preserve original if available. New desired 8♠ composition: falcon dodging a car inside a tunnel; not yet approved.
 
 - [ ] **8♠ tunnel-car peregrine falcon — option 3:** User explicitly selected this image for the final ZIP `references/` folder, **REFERENCE ONLY**, not approved card art. Preserve exact original if available.
+
+- [ ] **10♠ lion drafts — two uncrowned lion images:** User rejected both for final 10♠ because the lion needs a visible crown. User explicitly requested BOTH be retained in final Spades ZIP `references/`, marked **REFERENCE ONLY**. Preserve originals if available.
 
 ## ♥ HEARTS — Love & Desire
 
