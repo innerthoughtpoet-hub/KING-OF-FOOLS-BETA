@@ -23,7 +23,7 @@
 | ☑ | 5♠ | After Dark in LA | Coyote | User approved monochrome coyote overlooking Los Angeles skyline and palms beneath a full moon; retain original for suit ZIP. |
 | ☑ | 6♠ | War Paint | Wolverine | User explicitly approved **option 3**, upright on hind legs on alpine rocks, with long bushy tail and visible claws. Preserve this specific generated version for the final ZIP; earlier versions rejected. |
 | ☑ | 7♠ | The Underdog's Revenge | Mongoose | User explicitly approved **Option 1** from mongoose-versus-king-cobra confrontation batch: lunging mongoose facing towering cobra. Preserve exact chosen image for Spades ZIP; earlier mongoose portrait option 2 is reference-only. |
-| ☐ | 8♠ | Tunnel Vision | Peregrine Falcon | Animal/environment only |
+| ◐ | 8♠ | Tunnel Vision | Peregrine Falcon | User chose the first close-up diving falcon image as **reference only** for final ZIP `references/`; requested a new image of a peregrine falcon dodging a car through a tunnel. Awaiting approval. |
 | ☐ | 9♠ | Midnight Mayhem | Tasmanian Devil | Animal/environment only |
 | ☐ | 10♠ | The Royal Court | Lion | Animal/environment only |
 | ☐ | J♠ | The Wild Prince | Hyena | Existing beta reference image; **not yet individually final-approved for suit ZIP** |
@@ -42,6 +42,8 @@
 **New review rule:** Present **three distinct visual options per card**, and only mark the chosen image approved after explicit user confirmation.
 
 - [ ] **7♠ mongoose portrait — option 2 from the three-image mongoose batch:** User explicitly requested to retain as **REFERENCE ONLY**, not approved card artwork. Keep in the final Spades ZIP `references/` folder if the original file is available. The approved 7♠ card still needs a mongoose-versus-cobra confrontation.
+
+- [ ] **8♠ original diving peregrine falcon — image 1:** User requested inclusion in final Spades ZIP as **REFERENCE ONLY**. Preserve original if available. New desired 8♠ composition: falcon dodging a car inside a tunnel; not yet approved.
 
 ## ♥ HEARTS — Love & Desire
 
