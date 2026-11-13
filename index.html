@@ -346,6 +346,31 @@ button:focus-visible, a:focus-visible {
   margin-top: 8px;
 }
 
+.card-entry { display: flex; flex-direction: column; gap: 8px; }
+.card-entry .card-item { flex: 1; }
+.card-playlist-button {
+  display: block;
+  text-align: center;
+  padding: 11px 14px;
+  border: 1px solid #e4bd65;
+  border-radius: 9px;
+  background: #e4bd65;
+  color: #171717;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.card-playlist-button:hover, .card-playlist-button:focus-visible {
+  background: #f6d68b;
+  border-color: #f6d68b;
+}
+.card-playlist-button.unavailable {
+  background: #292929;
+  color: #aaa;
+  border-color: #555;
+  cursor: not-allowed;
+}
+
 footer {
   border-top: 1px solid #333;
   padding: 30px 15px;
@@ -1169,7 +1194,11 @@ function renderExplorer() {
   deck.forEach((card, index) => {
     if (card.suit !== activeSuit) return;
 
+    const entry = document.createElement("div");
+    entry.className = "card-entry";
+
     const item = document.createElement("button");
+    item.type = "button";
     item.className = "card-item";
 
     if (expandedIndex === index) {
@@ -1177,8 +1206,7 @@ function renderExplorer() {
     }
 
     const heading = document.createElement("strong");
-    heading.textContent =
-      card.rank + card.suit + " — " + card.title;
+    heading.textContent = card.rank + card.suit + " — " + card.title;
 
     const animal = document.createElement("span");
     animal.textContent = "Animal: " + card.animal;
@@ -1194,7 +1222,6 @@ function renderExplorer() {
 
     details.appendChild(meaning);
     details.appendChild(action);
-
     item.appendChild(heading);
     item.appendChild(animal);
     item.appendChild(details);
@@ -1209,13 +1236,30 @@ function renderExplorer() {
       expandedIndex = index;
       renderExplorer();
 
-      // Reveal this selected card above.
       currentIndex = index;
       displayCard(card);
       document.querySelector('.card-scene').scrollIntoView({behavior:'smooth',block:'center'});
     };
 
-    list.appendChild(item);
+    // Each card has its own playlist button, independent of the reveal button.
+    const playlistButton = document.createElement("a");
+    playlistButton.className = "card-playlist-button";
+    if (card.url) {
+      playlistButton.href = card.url;
+      playlistButton.target = "_blank";
+      playlistButton.rel = "noopener noreferrer";
+      playlistButton.textContent = "♫ Open Apple Music Playlist";
+      playlistButton.setAttribute("aria-label", "Open " + card.title + " on Apple Music");
+    } else {
+      playlistButton.classList.add("unavailable");
+      playlistButton.textContent = "♫ Playlist Coming Soon";
+      playlistButton.setAttribute("aria-disabled", "true");
+      playlistButton.removeAttribute("href");
+    }
+
+    entry.appendChild(item);
+    entry.appendChild(playlistButton);
+    list.appendChild(entry);
   });
 }
 
