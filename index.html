@@ -615,6 +615,39 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
 .card-front.dragon-card .card-title { bottom: 93px; }
 .card-front.dragon-card .card-meaning { bottom: 49px; }
 .card-front.dragon-card .front-phrase { bottom: 19px; }
+
+/* KING OF FOOLS — ornate, symmetrical signature card back */
+.card-face.card-back {
+  position:absolute; isolation:isolate; padding:22px 18px;
+  background:
+    radial-gradient(ellipse at 50% 48%,#292929 0%,#111 52%,#050505 100%);
+  color:#f7f1df; border:4px solid #e2d3ad;
+  box-shadow:inset 0 0 0 3px #090909,inset 0 0 0 6px #bba77e,inset 0 0 0 10px #101010,0 10px 25px #0007;
+}
+.card-face.card-back::before {
+  content:""; position:absolute; inset:15px; border:1px solid #bba77e;
+  border-radius:10px; pointer-events:none;
+  background:
+    repeating-linear-gradient(45deg,transparent 0 17px,#d8c69b0b 18px 19px,transparent 20px 36px),
+    repeating-linear-gradient(-45deg,transparent 0 17px,#d8c69b0b 18px 19px,transparent 20px 36px);
+}
+.card-face.card-back::after {
+  content:""; position:absolute; inset:23px; border:1px solid #d8c69b66;
+  border-radius:6px; pointer-events:none;
+}
+.card-back .back-center {z-index:1; display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;gap:8px;}
+.card-back .back-crown {font-size:65px;line-height:1;color:#e7d5a7;text-shadow:0 0 18px #e7d5a755;}
+.card-back .back-kicker {font:700 9px Georgia,serif;letter-spacing:.29em;color:#d7c49d;}
+.card-back .back-center h2 {margin:3px 0; padding:0;background:transparent;font:700 29px Georgia,serif;line-height:1.05;letter-spacing:.09em;text-shadow:0 2px 10px #000;}
+.card-back .back-center h2 span {display:block;font-size:13px;letter-spacing:.32em;margin:7px 0;}
+.card-back .back-rule {width:76%;display:flex;align-items:center;gap:10px;color:#d7c49d;font-size:14px;}
+.card-back .back-rule::before,.card-back .back-rule::after {content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#d7c49d,transparent);}
+.card-back .back-center p {margin:0;padding:0;background:transparent;color:#f7f1df;font:700 11px Georgia,serif;letter-spacing:.15em;}
+.card-back .back-ornament {position:absolute;z-index:1;left:50%;transform:translateX(-50%);font-size:17px;letter-spacing:.5em;white-space:nowrap;color:#e7d5a7;}
+.card-back .back-ornament span {font-size:11px;}
+.card-back .back-ornament-top {top:31px;}
+.card-back .back-ornament-bottom {bottom:31px;transform:translateX(-50%) rotate(180deg);}
+
 </style>
 </head>
 
@@ -634,9 +667,15 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
     <div class="playing-card" id="playingCard">
 
       <div class="card-face card-back">
-        <div class="card-symbol">♠ ♥ ♣ ♦</div>
-        <h2>KING OF FOOLS</h2>
-        <p>YOU PULL THE CARD.</p>
+        <div class="back-ornament back-ornament-top" aria-hidden="true">♠ <span>✦</span> ♥</div>
+        <div class="back-center">
+          <div class="back-crown" aria-hidden="true">♛</div>
+          <div class="back-kicker">THE DECK OF MIXES</div>
+          <h2>KING <span>OF</span> FOOLS</h2>
+          <div class="back-rule" aria-hidden="true"><span>✦</span></div>
+          <p>YOU PULL THE CARD.</p>
+        </div>
+        <div class="back-ornament back-ornament-bottom" aria-hidden="true">♣ <span>✦</span> ♦</div>
       </div>
 
       <div class="card-face card-front">
