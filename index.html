@@ -17,29 +17,36 @@
 .chaos-trigger:hover { background: #fff; color: #111; box-shadow: 0 0 24px #fff7; }
 .chaos-trigger:disabled { opacity: .6; }
 
-/* BETA: Chaos Shuffle — a burst of card backs, then a focused reveal. */
+/* BETA: enhanced Chaos Shuffle — orbit, collision, explosion, snap and reveal */
 .card-scene { position: relative; isolation: isolate; }
-.chaos-stage { position: absolute; inset: 0; z-index: 20; pointer-events: none; perspective: 900px; }
+.chaos-stage { position:absolute; inset:0; z-index:20; pointer-events:none; perspective:950px; overflow:visible; }
 .chaos-card {
-  position: absolute; inset: 0; border: 6px double #eee; border-radius: 15px;
-  background: repeating-linear-gradient(45deg,#111 0 9px,#303030 9px 12px);
-  box-shadow: 0 10px 30px #000b, inset 0 0 0 7px #111;
-  display: grid; place-items: center; color: #fff;
-  font: 900 31px Georgia,serif; letter-spacing: 6px;
-  animation: chaosFly 1.35s cubic-bezier(.22,.65,.3,1) both;
-  animation-delay: var(--delay);
-  will-change: transform, opacity;
+  position:absolute; left:50%; top:50%; width:clamp(85px, 43%, 130px); height:clamp(118px, 56%, 180px);
+  margin-left:-65px; margin-top:-90px;
+  border:5px double #f5f5f2; border-radius:11px;
+  background:repeating-linear-gradient(45deg,#0e0e0e 0 7px,#333 7px 10px);
+  box-shadow:0 12px 28px #000c, inset 0 0 0 5px #111, 0 0 14px #ffffff35;
+  display:grid; place-items:center; backface-visibility:visible;
+  animation:chaosFly 2.05s cubic-bezier(.18,.75,.2,1) both;
+  animation-delay:var(--delay); will-change:transform,opacity;
 }
-.chaos-card::after { content: "♠ ♥ ♣ ♦"; background: #111; padding: 12px 6px; border: 1px solid #aaa; border-radius: 5px; }
+.chaos-card::after { content:"♠ ♥ ♣ ♦"; color:#fff; background:#101010; padding:9px 3px; font:700 14px Georgia,serif; border:1px solid #bbb; border-radius:4px; }
+.chaos-stage::before { content:""; position:absolute; inset:-65%; border-radius:50%; opacity:0; border:2px dashed #ffffff66; animation:chaosRing 2.25s ease-out both; }
+.chaos-stage::after { content:"THE DECK DECIDES"; position:absolute; top:-44px; left:50%; transform:translateX(-50%); white-space:nowrap; color:#fff; font:700 13px Georgia,serif; letter-spacing:.23em; text-shadow:0 0 14px #fff; animation:chaosCaption 2.25s ease-in-out both; }
 @keyframes chaosFly {
-  0% { opacity: 0; transform: translate3d(0,0,0) rotate(0deg) scale(.85); }
-  16% { opacity: 1; transform: translate3d(calc(var(--x) * .7),calc(var(--y) * .7),30px) rotate(calc(var(--r) * .7)) scale(.72); }
-  47% { opacity: 1; transform: translate3d(var(--x),var(--y),80px) rotate(var(--r)) scale(.65); }
-  70% { opacity: 1; transform: translate3d(calc(var(--x) * -.35),calc(var(--y) * -.35),40px) rotate(calc(var(--r) * -.5)) scale(.78); }
-  92% { opacity: 1; transform: translate3d(0,0,0) rotate(0deg) scale(1); }
-  100% { opacity: 0; transform: translate3d(0,0,0) rotate(0deg) scale(.98); }
+  0% { opacity:0; transform:translate3d(0,0,-80px) rotate(0deg) rotateY(0deg) scale(.4); }
+  12% { opacity:1; transform:translate3d(var(--x),var(--y),70px) rotate(var(--r)) rotateY(125deg) scale(1); }
+  29% { opacity:1; transform:translate3d(var(--cross-x),var(--cross-y),120px) rotate(var(--spin)) rotateY(320deg) scale(.86); }
+  48% { opacity:1; transform:translate3d(var(--burst-x),var(--burst-y),160px) rotate(var(--spin2)) rotateY(550deg) scale(1.1); }
+  65% { opacity:1; transform:translate3d(var(--x),var(--cross-y),60px) rotate(var(--r)) rotateY(720deg) scale(.8); }
+  82% { opacity:1; transform:translate3d(0,0,10px) rotate(0deg) rotateY(900deg) scale(1.05); }
+  93% { opacity:1; transform:translate3d(0,0,0) rotate(0deg) rotateY(1080deg) scale(.88); }
+  100% { opacity:0; transform:translate3d(0,0,-30px) rotate(0deg) rotateY(1080deg) scale(.7); }
 }
-@media (prefers-reduced-motion: reduce) { .chaos-card { animation: none; display: none; } }
+@keyframes chaosRing { 0%,12% {opacity:0; transform:scale(.15) rotate(0)} 36% {opacity:.65} 75% {opacity:.15; transform:scale(1.25) rotate(180deg)} 100% {opacity:0; transform:scale(.3) rotate(300deg)} }
+@keyframes chaosCaption { 0%,12%,100% {opacity:0} 25%,72% {opacity:1} }
+@media (max-width:500px) { .chaos-card { width:100px; height:145px; margin-left:-50px; margin-top:-72px; } }
+@media (prefers-reduced-motion:reduce) { .chaos-card,.chaos-stage::before,.chaos-stage::after { animation:none; display:none; } }
 
 /* King of Fools: shuffle and reveal animations */
 
@@ -1038,37 +1045,46 @@ let chaosShuffleRunning = false;
 function chaosShuffle() {
   if (chaosShuffleRunning) return;
   let nextIndex;
-  do {
-    nextIndex = Math.floor(Math.random() * deck.length);
-  } while (nextIndex === currentIndex && deck.length > 1);
+  do { nextIndex = Math.floor(Math.random() * deck.length); }
+  while (nextIndex === currentIndex && deck.length > 1);
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reducedMotion) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     currentIndex = nextIndex;
     displayCard(deck[nextIndex]);
     return;
   }
 
   chaosShuffleRunning = true;
-  const button = document.getElementById("chaosShuffleButton");
-  button.disabled = true;
-  button.textContent = "♠ CHAOS IN MOTION…";
-  document.getElementById("drawStatus").textContent = "The deck is going wild…";
+  const chaosButton = document.getElementById("chaosShuffleButton");
+  const regularButton = document.getElementById("shuffleButton");
+  chaosButton.disabled = true;
+  regularButton.disabled = true;
+  chaosButton.textContent = "⚡ CHAOS UNLEASHED…";
+  document.getElementById("drawStatus").textContent = "52 cards. One fate. The deck is going wild…";
+
   const scene = document.querySelector(".card-scene");
   const stage = document.createElement("div");
   stage.className = "chaos-stage";
   stage.setAttribute("aria-hidden", "true");
-  const card = document.getElementById("playingCard");
-  card.classList.remove("flipped");
-  for (let i = 0; i < 12; i++) {
+  document.getElementById("playingCard").classList.remove("flipped");
+
+  for (let i = 0; i < 22; i++) {
     const ghost = document.createElement("div");
     ghost.className = "chaos-card";
-    const angle = (i / 12) * Math.PI * 2 + (Math.random() - .5) * .45;
-    const distance = 105 + Math.random() * 120;
-    ghost.style.setProperty("--x", Math.round(Math.cos(angle) * distance) + "px");
-    ghost.style.setProperty("--y", Math.round(Math.sin(angle) * distance * .7) + "px");
-    ghost.style.setProperty("--r", Math.round((Math.random() - .5) * 150) + "deg");
-    ghost.style.setProperty("--delay", (i * 18) + "ms");
+    const angle = i * Math.PI * 2 / 22 + (Math.random() - .5) * .6;
+    const distance = 105 + Math.random() * 175;
+    const x = Math.round(Math.cos(angle) * distance);
+    const y = Math.round(Math.sin(angle) * distance * .9);
+    ghost.style.setProperty("--x", x + "px");
+    ghost.style.setProperty("--y", y + "px");
+    ghost.style.setProperty("--cross-x", Math.round(-x * .85) + "px");
+    ghost.style.setProperty("--cross-y", Math.round(-y * .85) + "px");
+    ghost.style.setProperty("--burst-x", Math.round(x * 1.45) + "px");
+    ghost.style.setProperty("--burst-y", Math.round(y * 1.35) + "px");
+    ghost.style.setProperty("--r", Math.round((Math.random() - .5) * 160) + "deg");
+    ghost.style.setProperty("--spin", (Math.random() < .5 ? -1 : 1) * (180 + Math.round(Math.random() * 360)) + "deg");
+    ghost.style.setProperty("--spin2", (Math.random() < .5 ? -1 : 1) * (540 + Math.round(Math.random() * 360)) + "deg");
+    ghost.style.setProperty("--delay", Math.round(Math.random() * 170) + "ms");
     stage.appendChild(ghost);
   }
   scene.appendChild(stage);
@@ -1078,12 +1094,14 @@ function chaosShuffle() {
     displayCard(deck[nextIndex]);
     window.setTimeout(() => {
       chaosShuffleRunning = false;
-      button.disabled = false;
-      button.textContent = "⚡ CHAOS SHUFFLE";
+      chaosButton.disabled = false;
+      regularButton.disabled = false;
+      chaosButton.textContent = "⚡ CHAOS SHUFFLE";
     }, 450);
-  }, 1600);
+  }, 2300);
 }
 
+// Standard Shuffle & Draw: select a random card and perform only the normal flip.
 function drawRandom() {
   if (chaosShuffleRunning) return;
   let nextIndex;
