@@ -960,7 +960,22 @@ function displayCard(card) {
         }
       };
       artwork.alt = card.title + " — " + card.animal + " illustration";
-      artwork.src = pagesUrl;
+      // Diamonds were uploaded to top-level folders. Serve those directly from
+      // GitHub's raw file host first; retain Pages as a fallback. Other suits unchanged.
+      if (card.suit === "♦") {
+        artwork.onerror = () => {
+          if (artwork.dataset.fallbackUsed === "false") {
+            artwork.dataset.fallbackUsed = "true";
+            artwork.src = pagesUrl;
+          } else {
+            cardFace.classList.remove("has-artwork", "finished-artwork");
+            document.getElementById("drawStatus").textContent += " — Diamond image failed on both hosts.";
+          }
+        };
+        artwork.src = rawUrl + "?v=d20ac864";
+      } else {
+        artwork.src = pagesUrl;
+      }
     }
 
     document.getElementById("cardTitle").textContent =
