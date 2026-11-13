@@ -32,7 +32,6 @@
 }
 .chaos-card::after { content:"♠ ♥ ♣ ♦"; color:#fff; background:#101010; padding:9px 3px; font:700 14px Georgia,serif; border:1px solid #bbb; border-radius:4px; }
 .chaos-stage::before { content:""; position:absolute; inset:-65%; border-radius:50%; opacity:0; border:2px dashed #ffffff66; animation:chaosRing 2.25s ease-out both; }
-.chaos-stage::after { content:"THE DECK DECIDES"; position:absolute; top:-44px; left:50%; transform:translateX(-50%); white-space:nowrap; color:#fff; font:700 13px Georgia,serif; letter-spacing:.23em; text-shadow:0 0 14px #fff; animation:chaosCaption 2.25s ease-in-out both; }
 @keyframes chaosFly {
   0% { opacity:0; transform:translate3d(0,0,-80px) rotate(0deg) rotateY(0deg) scale(.4); }
   12% { opacity:1; transform:translate3d(var(--x),var(--y),70px) rotate(var(--r)) rotateY(125deg) scale(1); }
@@ -1109,7 +1108,7 @@ function displayCard(card) {
   }, 350);
 }
 
-const chaosAnimationNames = ["Royal Riffle","Card Tornado","Midnight Cascade","Mirror Split","Dealer's Fan","Black Hole","Royal Wave","Crossfire","Helix Rise","Domino Collapse","Crown Burst"];
+const chaosAnimationCount = 11;
 let lastChaosAnimation = -1;
 let chaosShuffleRunning = false;
 function chaosShuffle() {
@@ -1135,11 +1134,10 @@ function chaosShuffle() {
   const scene = document.querySelector(".card-scene");
   const stage = document.createElement("div");
   let animationIndex;
-  do { animationIndex = 1 + Math.floor(Math.random() * chaosAnimationNames.length); }
+  do { animationIndex = 1 + Math.floor(Math.random() * chaosAnimationCount); }
   while (animationIndex === lastChaosAnimation);
   lastChaosAnimation = animationIndex;
   stage.className = "chaos-stage variant-" + animationIndex;
-  stage.setAttribute("data-animation", chaosAnimationNames[animationIndex - 1]);
   document.getElementById("drawStatus").textContent = "52 cards. One fate. The deck decides…";
   stage.setAttribute("aria-hidden", "true");
   document.getElementById("playingCard").classList.remove("flipped");
