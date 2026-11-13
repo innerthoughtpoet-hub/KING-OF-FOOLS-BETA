@@ -11,6 +11,12 @@
 <style>
 
 
+
+/* Dedicated, visually unmistakable Chaos Shuffle control */
+.chaos-trigger { background: #171717; color: #fff; border: 2px solid #f5f5f2; letter-spacing: .12em; box-shadow: 0 0 0 2px #444, 0 0 18px #fff3; }
+.chaos-trigger:hover { background: #fff; color: #111; box-shadow: 0 0 24px #fff7; }
+.chaos-trigger:disabled { opacity: .6; }
+
 /* BETA: Chaos Shuffle — a burst of card backs, then a focused reveal. */
 .card-scene { position: relative; isolation: isolate; }
 .chaos-stage { position: absolute; inset: 0; z-index: 20; pointer-events: none; perspective: 900px; }
@@ -576,6 +582,7 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
 
   <div class="controls">
     <button id="shuffleButton" onclick="drawRandom()">♠ Shuffle & Draw</button>
+    <button id="chaosShuffleButton" class="chaos-trigger" onclick="chaosShuffle()">⚡ CHAOS SHUFFLE</button>
     <button onclick="shareCard()">Share My Card</button>
     <button id="flipCardButton" onclick="toggleCardFlip()" disabled aria-label="Flip card back over">↶ Flip Card Over</button>
     <a class="listen" id="listenButton"
@@ -1028,7 +1035,7 @@ function displayCard(card) {
 }
 
 let chaosShuffleRunning = false;
-function drawRandom() {
+function chaosShuffle() {
   if (chaosShuffleRunning) return;
   let nextIndex;
   do {
@@ -1043,7 +1050,7 @@ function drawRandom() {
   }
 
   chaosShuffleRunning = true;
-  const button = document.getElementById("shuffleButton");
+  const button = document.getElementById("chaosShuffleButton");
   button.disabled = true;
   button.textContent = "♠ CHAOS IN MOTION…";
   document.getElementById("drawStatus").textContent = "The deck is going wild…";
@@ -1072,9 +1079,18 @@ function drawRandom() {
     window.setTimeout(() => {
       chaosShuffleRunning = false;
       button.disabled = false;
-      button.textContent = "♠ Shuffle & Draw";
+      button.textContent = "⚡ CHAOS SHUFFLE";
     }, 450);
   }, 1600);
+}
+
+function drawRandom() {
+  if (chaosShuffleRunning) return;
+  let nextIndex;
+  do { nextIndex = Math.floor(Math.random() * deck.length); }
+  while (nextIndex === currentIndex && deck.length > 1);
+  currentIndex = nextIndex;
+  displayCard(deck[nextIndex]);
 }
 
 // ==========================================
