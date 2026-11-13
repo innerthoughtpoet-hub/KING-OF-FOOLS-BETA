@@ -1143,7 +1143,10 @@ async function shareCard() {
 // INITIALIZE WEBSITE
 // ==========================================
 
-showSuit("♦");
+// Allow direct links to a suit for testing and sharing, without changing the normal default.
+const requestedSuit = new URLSearchParams(window.location.search).get("suit");
+const suitRoute = { spades: "♠", hearts: "♥", clubs: "♣", diamonds: "♦" };
+showSuit(suitRoute[(requestedSuit || "").toLowerCase()] || "♦");
 
 </script>
 </body>
