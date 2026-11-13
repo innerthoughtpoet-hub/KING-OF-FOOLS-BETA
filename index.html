@@ -50,8 +50,6 @@
 
 
 /* Twelve independently randomized CHAOS SHUFFLE motion systems. */
-.chaos-stage.variant-0 .chaos-card { animation-name: chaosVariant0; }
-@keyframes chaosVariant0 { 0% {opacity:0;transform:translate3d(0,0,-140px) rotateY(0deg) rotateX(0deg)} 24% {opacity:1;transform:translate3d(var(--x),var(--y),130px) rotateY(360deg) rotateX(20deg)} 60% {opacity:1;transform:translate3d(var(--cross-x),var(--cross-y),90px) rotateY(720deg) rotateX(45deg)} 91% {opacity:1;transform:translate3d(0,0,0) rotateY(1080deg) rotateX(0deg)} 100% {opacity:0;transform:translate3d(0,0,0) rotateY(1080deg) rotateX(0deg) scale(.65)} }
 .chaos-stage.variant-1 .chaos-card { animation-name: chaosVariant1; }
 @keyframes chaosVariant1 { 0% {opacity:0;transform:translate3d(var(--x),-190px,0) rotate(-45deg)} 24% {opacity:1;transform:translate3d(var(--cross-x),-40px,90px) rotate(35deg)} 60% {opacity:1;transform:translate3d(var(--x),45px,80px) rotate(-35deg)} 91% {opacity:1;transform:translate3d(0,0,0) rotate(0deg)} 100% {opacity:0;transform:translate3d(0,0,0) rotate(0deg) scale(.65)} }
 .chaos-stage.variant-2 .chaos-card { animation-name: chaosVariant2; }
@@ -74,8 +72,6 @@
 @keyframes chaosVariant10 { 0% {opacity:0;transform:translate3d(var(--x),-180px,0) rotateX(75deg)} 24% {opacity:1;transform:translate3d(var(--cross-x),-90px,80px) rotateX(180deg)} 60% {opacity:1;transform:translate3d(var(--x),40px,120px) rotateX(330deg)} 91% {opacity:1;transform:translate3d(0,0,0) rotateX(540deg)} 100% {opacity:0;transform:translate3d(0,0,0) rotateX(540deg) scale(.65)} }
 .chaos-stage.variant-11 .chaos-card { animation-name: chaosVariant11; }
 @keyframes chaosVariant11 { 0% {opacity:0;transform:translate3d(0,0,-100px) scale(.15) rotate(0deg)} 24% {opacity:1;transform:translate3d(var(--burst-x),var(--burst-y),170px) scale(1.2) rotate(180deg)} 60% {opacity:1;transform:translate3d(var(--cross-x),var(--cross-y),120px) scale(1) rotate(540deg)} 91% {opacity:1;transform:translate3d(0,0,0) scale(.8) rotate(720deg)} 100% {opacity:0;transform:translate3d(0,0,0) scale(.8) rotate(720deg) scale(.65)} }
-.chaos-stage.face-up .chaos-card { background:#f5f5f2; border-color:#111; box-shadow:0 12px 28px #000b,inset 0 0 0 4px #ddd; }
-.chaos-stage.face-up .chaos-card::after { content:attr(data-face); color:#111; background:transparent; border:0; font:700 27px Georgia,serif; }
 
 
 /* CHAOS v2: visibly distinct full-scene treatments, not just different paths. */
@@ -91,7 +87,6 @@
 }
 .chaos-stage .chaos-label small {display:block;color:#fff;font-size:11px;letter-spacing:.17em;margin-top:7px;}
 @keyframes chaosLabel {0%,12%{opacity:0;transform:translate(-50%,-50%) scale(.5)} 22%,70%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-50%) scale(1.3)}}
-.chaos-stage.variant-0 .chaos-card { background:#f8f6ef; color:#171717; border:4px solid #151515; }
 .chaos-stage.variant-0 .chaos-card::after {font-size:32px;}
 .chaos-stage.variant-1 .chaos-card {border-radius:3px; background:repeating-linear-gradient(90deg,#111 0 12px,#aaa 13px 15px);}
 .chaos-stage.variant-2 .chaos-card {border-color:#f3d38c; box-shadow:0 0 26px #f3d38c99;}
@@ -104,7 +99,7 @@
 .chaos-stage.variant-9 .chaos-card {border-color:#d5b76e; box-shadow:0 0 20px #e6c470;}
 .chaos-stage.variant-10 .chaos-card {border-radius:0; background:repeating-linear-gradient(45deg,#000 0 6px,#777 6px 9px);}
 .chaos-stage.variant-11 .chaos-card {border-color:#f4d58d;box-shadow:0 0 35px #f4d58d;}
-.chaos-stage.variant-0::before,.chaos-stage.variant-6::before {border:5px solid #f3d38c;}
+.chaos-stage.variant-6::before {border:5px solid #f3d38c;}
 @media(prefers-reduced-motion:reduce){.chaos-stage .chaos-label{animation:none;display:none;}}
 
 /* King of Fools: shuffle and reveal animations */
@@ -1126,7 +1121,7 @@ function displayCard(card) {
   }, 350);
 }
 
-const chaosAnimationNames = ["Orbit of Fates","Royal Riffle","Card Tornado","Midnight Cascade","Mirror Split","Dealer's Fan","Black Hole","Royal Wave","Crossfire","Helix Rise","Domino Collapse","Crown Burst"];
+const chaosAnimationNames = ["Royal Riffle","Card Tornado","Midnight Cascade","Mirror Split","Dealer's Fan","Black Hole","Royal Wave","Crossfire","Helix Rise","Domino Collapse","Crown Burst"];
 let lastChaosAnimation = -1;
 let chaosShuffleRunning = false;
 function chaosShuffle() {
@@ -1152,18 +1147,18 @@ function chaosShuffle() {
   const scene = document.querySelector(".card-scene");
   const stage = document.createElement("div");
   let animationIndex;
-  do { animationIndex = Math.floor(Math.random() * chaosAnimationNames.length); }
+  do { animationIndex = 1 + Math.floor(Math.random() * chaosAnimationNames.length); }
   while (animationIndex === lastChaosAnimation);
   lastChaosAnimation = animationIndex;
-  stage.className = "chaos-stage variant-" + animationIndex + (animationIndex === 0 ? " face-up" : "");
-  stage.setAttribute("data-animation", chaosAnimationNames[animationIndex]);
-  document.getElementById("drawStatus").textContent = "⚡ " + chaosAnimationNames[animationIndex] + " — the deck decides…";
+  stage.className = "chaos-stage variant-" + animationIndex;
+  stage.setAttribute("data-animation", chaosAnimationNames[animationIndex - 1]);
+  document.getElementById("drawStatus").textContent = "⚡ " + chaosAnimationNames[animationIndex - 1] + " — the deck decides…";
   stage.setAttribute("aria-hidden", "true");
   const label = document.createElement("div");
   label.className = "chaos-label";
-  label.textContent = chaosAnimationNames[animationIndex];
+  label.textContent = chaosAnimationNames[animationIndex - 1];
   const sub = document.createElement("small");
-  sub.textContent = "CHAOS MODE " + (animationIndex + 1) + " / 12";
+  sub.textContent = "CHAOS MODE " + animationIndex + " / 11";
   label.appendChild(sub);
   stage.appendChild(label);
   document.getElementById("playingCard").classList.remove("flipped");
@@ -1171,10 +1166,6 @@ function chaosShuffle() {
   for (let i = 0; i < 22; i++) {
     const ghost = document.createElement("div");
     ghost.className = "chaos-card";
-    if (animationIndex === 0) {
-      const face = deck[(nextIndex + i * 7) % deck.length];
-      ghost.dataset.face = face.rank + face.suit;
-    }
     const angle = i * Math.PI * 2 / 22 + (Math.random() - .5) * .6;
     const distance = 105 + Math.random() * 175;
     const x = Math.round(Math.cos(angle) * distance);
