@@ -60,51 +60,9 @@
       <small>Events • Branded decks • DJ experiences</small>
     </article>
   </div>
-  <div class="studio-inquiry">
-    <h3>Request Your Experience</h3>
-    <p>Tell the King what you're imagining. Copy your inquiry below and send it through your preferred contact channel. This form does not submit or store your information.</p>
-    <form id="studioInquiryForm" onsubmit="copyStudioInquiry(event)">
-      <div class="studio-fields">
-        <label>Your name<input name="clientName" autocomplete="name" required placeholder="Your name"></label>
-        <label>Your email<input name="clientEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label>
-        <label>Choose an experience<select name="package"><option>Personal Soundtrack — from $75</option><option>Mini Deck — from $225</option><option>Royal Experience — custom quote</option></select></label>
-        <label>Event date (if applicable)<input name="eventDate" type="date"></label>
-        <label class="studio-full">Tell us about your idea<textarea name="details" rows="4" required placeholder="The occasion, vibe, music preferences, and anything else you'd like the King to know"></textarea></label>
-      </div>
-      <button class="studio-copy" type="submit">♛ Copy My Inquiry</button>
-      <p id="studioCopyStatus" role="status" aria-live="polite"></p>
-    </form>
-    <p class="studio-note">Introductory prices are estimates, not instant checkout. Final scope, timeline, and pricing are confirmed before any work begins. Music plays through its respective streaming service; commercial playback rights are not included.</p>
-  </div>
+  <p class="studio-note">Prices are introductory estimates. Final scope and pricing are confirmed before work begins. Commercial music playback rights are not included.</p>
 </section>
 <footer class="studio-footer">KING OF FOOLS — The Deck of Mixes · You pull the card. I set the night.</footer>
-<script>
-function copyStudioInquiry(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const data = new FormData(form);
-  const message = "KING OF FOOLS — STUDIO INQUIRY\\n" +
-    "Name: " + data.get("clientName") + "\\n" +
-    "Email: " + data.get("clientEmail") + "\\n" +
-    "Experience: " + data.get("package") + "\\n" +
-    "Event date: " + (data.get("eventDate") || "Not specified") + "\\n" +
-    "Details: " + data.get("details");
-  const status = document.getElementById("studioCopyStatus");
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(message).then(() => {
-      status.textContent = "Inquiry copied! Paste it into your message to KING OF FOOLS. Nothing has been sent yet.";
-    }).catch(() => {
-      window.prompt("Copy your inquiry:", message);
-      status.textContent = "Copy the inquiry above and send it. Nothing has been sent yet.";
-    });
-  } else {
-    window.prompt("Copy your inquiry:", message);
-    status.textContent = "Copy the inquiry above and send it. Nothing has been sent yet.";
-  }
-}
 
-
-
-</script>
 </body>
 </html>
