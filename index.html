@@ -10,6 +10,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Cinzel:wght@400;600;700;900&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Josefin+Sans:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Oswald:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Righteous&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <style>
 
+
+/* BETA: Chaos Shuffle — a burst of card backs, then a focused reveal. */
+.card-scene { position: relative; isolation: isolate; }
+.chaos-stage { position: absolute; inset: 0; z-index: 20; pointer-events: none; perspective: 900px; }
+.chaos-card {
+  position: absolute; inset: 0; border: 6px double #eee; border-radius: 15px;
+  background: repeating-linear-gradient(45deg,#111 0 9px,#303030 9px 12px);
+  box-shadow: 0 10px 30px #000b, inset 0 0 0 7px #111;
+  display: grid; place-items: center; color: #fff;
+  font: 900 31px Georgia,serif; letter-spacing: 6px;
+  animation: chaosFly 1.35s cubic-bezier(.22,.65,.3,1) both;
+  animation-delay: var(--delay);
+  will-change: transform, opacity;
+}
+.chaos-card::after { content: "♠ ♥ ♣ ♦"; background: #111; padding: 12px 6px; border: 1px solid #aaa; border-radius: 5px; }
+@keyframes chaosFly {
+  0% { opacity: 0; transform: translate3d(0,0,0) rotate(0deg) scale(.85); }
+  16% { opacity: 1; transform: translate3d(calc(var(--x) * .7),calc(var(--y) * .7),30px) rotate(calc(var(--r) * .7)) scale(.72); }
+  47% { opacity: 1; transform: translate3d(var(--x),var(--y),80px) rotate(var(--r)) scale(.65); }
+  70% { opacity: 1; transform: translate3d(calc(var(--x) * -.35),calc(var(--y) * -.35),40px) rotate(calc(var(--r) * -.5)) scale(.78); }
+  92% { opacity: 1; transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translate3d(0,0,0) rotate(0deg) scale(.98); }
+}
+@media (prefers-reduced-motion: reduce) { .chaos-card { animation: none; display: none; } }
+
 /* King of Fools: shuffle and reveal animations */
 
 .playing-card.shuffling {
@@ -550,7 +575,7 @@ header p { font-size: 11px;letter-spacing: 4px;color:#aaa; }
   </div>
 
   <div class="controls">
-    <button onclick="drawRandom()">♠ Shuffle & Draw</button>
+    <button id="shuffleButton" onclick="drawRandom()">♠ Shuffle & Draw</button>
     <button onclick="shareCard()">Share My Card</button>
     <button id="flipCardButton" onclick="toggleCardFlip()" disabled aria-label="Flip card back over">↶ Flip Card Over</button>
     <a class="listen" id="listenButton"
@@ -1002,17 +1027,54 @@ function displayCard(card) {
   }, 350);
 }
 
+let chaosShuffleRunning = false;
 function drawRandom() {
+  if (chaosShuffleRunning) return;
   let nextIndex;
-
   do {
     nextIndex = Math.floor(Math.random() * deck.length);
-  } while (
-    nextIndex === currentIndex && deck.length > 1
-  );
+  } while (nextIndex === currentIndex && deck.length > 1);
 
-  currentIndex = nextIndex;
-  displayCard(deck[nextIndex]);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) {
+    currentIndex = nextIndex;
+    displayCard(deck[nextIndex]);
+    return;
+  }
+
+  chaosShuffleRunning = true;
+  const button = document.getElementById("shuffleButton");
+  button.disabled = true;
+  button.textContent = "♠ CHAOS IN MOTION…";
+  document.getElementById("drawStatus").textContent = "The deck is going wild…";
+  const scene = document.querySelector(".card-scene");
+  const stage = document.createElement("div");
+  stage.className = "chaos-stage";
+  stage.setAttribute("aria-hidden", "true");
+  const card = document.getElementById("playingCard");
+  card.classList.remove("flipped");
+  for (let i = 0; i < 12; i++) {
+    const ghost = document.createElement("div");
+    ghost.className = "chaos-card";
+    const angle = (i / 12) * Math.PI * 2 + (Math.random() - .5) * .45;
+    const distance = 105 + Math.random() * 120;
+    ghost.style.setProperty("--x", Math.round(Math.cos(angle) * distance) + "px");
+    ghost.style.setProperty("--y", Math.round(Math.sin(angle) * distance * .7) + "px");
+    ghost.style.setProperty("--r", Math.round((Math.random() - .5) * 150) + "deg");
+    ghost.style.setProperty("--delay", (i * 18) + "ms");
+    stage.appendChild(ghost);
+  }
+  scene.appendChild(stage);
+  window.setTimeout(() => {
+    stage.remove();
+    currentIndex = nextIndex;
+    displayCard(deck[nextIndex]);
+    window.setTimeout(() => {
+      chaosShuffleRunning = false;
+      button.disabled = false;
+      button.textContent = "♠ Shuffle & Draw";
+    }, 450);
+  }, 1600);
 }
 
 // ==========================================
